@@ -17,7 +17,7 @@ With Verilator 5, a C++ compiler and Make, run `make test`. The testbench stream
 
 ## Files
 
-The private repository also contains the reviewed mapped connectivity in `synthesis/IOTDF_syn.v`. See [source provenance](docs/provenance.md) for the artifact inventory.
+The private repository also contains the reviewed mapped connectivity and matching design-instance timing annotations in `synthesis/IOTDF_syn.v` and `synthesis/IOTDF_syn.sdf`. See [source provenance](docs/provenance.md) for the artifact inventory.
 
 - `rtl/IOTDF.v` contains the original top module, DES, comparator and checksum logic.
 - `model/des_encrypt.py` and `model/des_decrypt.py` are the original verbose DES round-reference utilities from the course workspace. Each exports a function accepting two 64-character binary strings and prints intermediate results.
