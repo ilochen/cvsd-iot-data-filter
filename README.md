@@ -1,5 +1,7 @@
 # Streaming IoT data filter
 
+[![Validation](https://github.com/ilochen/cvsd-iot-data-filter/actions/workflows/rtl.yml/badge.svg)](https://github.com/ilochen/cvsd-iot-data-filter/actions/workflows/rtl.yml)
+
 NTU CVSD project 4 implements four functions on an 8-bit input stream. Alternating 128-bit input registers let one block feed the DES operation while the next block arrives. `iot_out` carries the result when `valid` is asserted.
 
 | fn_sel | Function | Output |
@@ -17,10 +19,18 @@ With Verilator 5, a C++ compiler and Make, run `make test`. The testbench stream
 
 ## Files
 
-The private repository also contains the reviewed mapped connectivity and matching design-instance timing annotations in `synthesis/IOTDF_syn.v` and `synthesis/IOTDF_syn.sdf`. See [source provenance](docs/provenance.md) for the artifact inventory.
+The repository also contains the reviewed mapped connectivity and matching design-instance timing annotations in `synthesis/IOTDF_syn.v` and `synthesis/IOTDF_syn.sdf`. See [source provenance](docs/provenance.md) for the artifact inventory.
 
 - `rtl/IOTDF.v` contains the original top module, DES, comparator and checksum logic.
 - `model/des_encrypt.py` and `model/des_decrypt.py` are the original verbose DES round-reference utilities from the course workspace. Each exports a function accepting two 64-character binary strings and prints intermediate results.
 - `tests/filter_tb.sv` is a portable check against the supplied `tests/pattern1_data/` input and answer files.
 
 The original report lists a 12 ns target clock. This repository verifies RTL functionality and does not require a proprietary cell library.
+
+[Interactive architecture](https://ilochen.github.io/projects/cvsd-iot-data-filter/)
+
+## Validation snapshot
+
+All 256 expected output words matched across DES encryption, DES decryption, polynomial checksum, and byte sorting.
+
+Rechecked on 6 November 2026. Simulation results establish the covered functional behavior; physical implementation measurements are identified separately in the documentation.
